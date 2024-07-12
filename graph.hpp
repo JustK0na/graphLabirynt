@@ -46,6 +46,8 @@ class edgeList{
     std::vector<Edge> incidentEdges(std::string);
     bool isAdjectedTo(std::string,std::string);
 
+    void removeEdge(int);
+    void removeVertex(std::string);
 
 };
 

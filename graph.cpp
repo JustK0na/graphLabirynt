@@ -1,7 +1,7 @@
 #include "graph.hpp"
 #include <stdio.h>
 #include <iostream>
-
+#include <cstring>
 
 void sayHi(){
     std::cout<<"Hellow from graph.cpp"<<std::endl;
@@ -65,7 +65,8 @@ std::vector<Edge> edgeList::incidentEdges(std::string vertex){
 
 bool edgeList::isAdjectedTo(std::string ver1, std::string ver2){
 
-    int index1, index2;
+    int index1=-1, index2=-1;
+
 
     for(int i=0; i<(int)verticies.size(); i++){
         if(verticies.at(i).data == ver1){
@@ -76,10 +77,46 @@ bool edgeList::isAdjectedTo(std::string ver1, std::string ver2){
         }
     }
 
+    if(index1<0||index2<0){
+        return false;
+    }
+
     for(int i=0; i<(int)edges.size(); i++){
         if((edges.at(i).vertexStart==index1 && edges.at(i).vertexEnd==index2)||(edges.at(i).vertexStart==index2 && edges.at(i).vertexEnd==index1)){
             return true;
         }
     }
     return false;
+}
+
+void edgeList::removeEdge(int e){
+    edges.erase(edges.begin()+e);
+}
+
+void edgeList::removeVertex(std::string v){
+    std::vector<Edge> incident;
+    int index=-1;
+    incident = incidentEdges(v);
+
+    for(int i=0; i<(int)verticies.size(); i++){
+        if(verticies.at(i).data==v){
+            index = i;
+            break;
+        }
+    }
+
+    if(index<0){
+        char name[1024];
+        strcpy(name, v.c_str());
+        perror("there is no such a vertex as: ");
+        perror(name);
+        exit(-1);
+    }
+
+    for(int i=0; i<(int)incident.size(); i++){
+        removeEdge(incident.at(i).index);
+    }
+
+    verticies.erase(verticies.begin()+index);
+
 }
