@@ -48,7 +48,7 @@ int main(int argc, char **argv){
     }
     
     std::vector<Edge> incident;
-    std::string edgeNumber = "f";
+    std::string edgeNumber = "c";
     incident = g.incidentEdges(edgeNumber);
     std::cout<<"Edges incident to Vertex "<< edgeNumber <<": "<<std::endl;
 
@@ -56,11 +56,32 @@ int main(int argc, char **argv){
         std::cout<<"\t"<<incident.at(i).index<<std::endl;
     }
 
-    std::string ver1="i",ver2="c";
+    std::string ver1="e",ver2="c";
     bool sasiad = g.isAdjectedTo(ver1,ver2);
     std::string odp;
 
     std::cout<<"Czy "<<ver1<<" jest sasiadem "<<ver2<<" ?\t"<<(odp = sasiad ? "tak":"nie" )<<std::endl;
+
+    //g.removeEdge(4);
+    //sasiad = g.isAdjectedTo(ver1,ver2);
+    //std::cout<<"Czy "<<ver1<<" jest sasiadem "<<ver2<<" ?\t"<<(odp = sasiad ? "tak":"nie" )<<std::endl;
+    g.removeVertex("e");
+    
+    sasiad = g.isAdjectedTo(ver1,ver2);
+    std::cout<<"Czy "<<ver1<<" jest sasiadem "<<ver2<<" ?\t"<<(odp = sasiad ? "tak":"nie" )<<std::endl;
+
+    tmpVector = g.allVertices();
+
+    for(int i=0; i<(int)tmpVector.size(); i++){
+        std::cout<<tmpVector.at(i).data<<std::endl;
+    }
+
+    edgeNumber = "c";
+    incident = g.incidentEdges(edgeNumber);
+    std::cout<<"Edges incident to Vertex "<< edgeNumber <<": "<<std::endl;
+    for(int i=0; i<(int)incident.size(); i++){
+        std::cout<<"\t"<<incident.at(i).index<<std::endl;
+    }
 
     return 0;
 }   
