@@ -83,5 +83,20 @@ int main(int argc, char **argv){
         std::cout<<"\t"<<incident.at(i).index<<std::endl;
     }
 
+    int exampledge = 3;
+    std::cout<<"This Vertices are at the end of: "<<exampledge<<" edge"<<std::endl;
+
+    std::vector<Vertex> endVerttices;
+
+    endVerttices = g.endVertices(exampledge);
+
+    for(int i=0; i<(int)endVerttices.size(); i++)
+        std::cout<<"\t"<<endVerttices.at(i).data<<"\n";
+    
+    Vertex opposite;
+    opposite = g.opposite(exampledge, edgeNumber);
+    std::cout<<"This Vertex: "<<opposite.data<<" is at the other end of: "<<exampledge<<" than: "<<edgeNumber<<"\n";
+    
     return 0;
+
 }   

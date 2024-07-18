@@ -62,7 +62,6 @@ std::vector<Edge> edgeList::incidentEdges(std::string vertex){
     }
     return incidents;
 }
-
 bool edgeList::isAdjectedTo(std::string ver1, std::string ver2){
 
     int index1=-1, index2=-1;
@@ -119,4 +118,40 @@ void edgeList::removeVertex(std::string v){
 
     verticies.erase(verticies.begin()+index);
 
+}
+
+std::vector<Vertex> edgeList::endVertices(int e){
+    std::vector<Vertex> ends;
+
+    for(int i=0; i<(int)verticies.size(); i++){
+        if(verticies.at(i).index == edges.at(e).vertexEnd || verticies.at(i).index==edges.at(e).vertexStart){
+            ends.push_back(verticies.at(i));
+        }
+    }
+
+    return ends;    
+}
+
+Vertex edgeList::opposite(int e, std::string v){
+    Vertex opposite;
+    int index;
+    for(int i=0; i<(int)verticies.size(); i++)
+        if(verticies.at(i).data == v)
+            index = i;
+
+    if(edges.at(e).vertexEnd==index)
+        opposite = verticies.at(edges.at(e).vertexStart);
+    else if(edges.at(e).vertexStart==index)
+        opposite = verticies.at(edges.at(e).vertexEnd);
+ 
+    return opposite;
+}
+
+bool edgeList::isAdjectedToEdge(int,  int){
+    std::vector<Vertex> startEnd;
+
+    for(int i=0; i<(int)verticies.size(); i++){
+        int()
+        startEnd.push_back(verticies.at(i))
+    }
 }
